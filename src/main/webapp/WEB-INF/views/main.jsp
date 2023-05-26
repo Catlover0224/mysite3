@@ -13,24 +13,7 @@
 
 <body>
 	<div id="wrap">
-		<div id="header">
-			<h1><a href="">MySite</a></h1>
-			<!-- jstl -->
-			<c:if test="${empty user.userId}">
-				<ul>
-					<li><a href="./user/loginForm">로그인</a></li>
-					<li><a href="./user/joinForm">회원가입</a></li>
-				</ul>
-			</c:if>
-			<c:if test="${!empty user.userId}">
-				<ul>
-					<li>${user.userName}님안녕하세요! ('U')/♣</li>
-					<li><a href="./user/logout">로그아웃</a></li>
-					<li><a href="./user/modifyForm">회원정보수정</a></li>
-				</ul>
-			</c:if>
-		</div>
-		
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 		<div id="nav">
 			<ul>

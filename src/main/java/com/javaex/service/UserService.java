@@ -29,4 +29,12 @@ public class UserService {
 		return user;
 	}
 
+	public int update(UserVO vo) {
+		System.out.println("UserService.update()");
+		
+		int cnt =dao.update(vo);
+		
+		return cnt;
+	}
+
 }

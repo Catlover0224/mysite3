@@ -28,4 +28,14 @@
 			where id= #{userId} and password= #{userPwd}
 		]]>
 	</select>
+	<!-- 수정 -->
+	<update id ="update" parameterType = "com.javaex.vo.UserVO">
+		<![CDATA[
+			UPDATE users
+			SET password = #{userPwd},
+			    name = #{userName},
+			    gender = #{gender}
+			WHERE id = #{userId};
+		]]>
+	</update>
 </mapper>

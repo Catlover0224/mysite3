@@ -28,8 +28,19 @@ public class UserDAO {
 	}
 
 	public UserVO login(UserVO vo) {
+		System.out.println("UserDAO.login() 에 들어갔슘니돠!!!");
+		System.out.println("UserDAO : "+vo);
 		UserVO user = sqlSession.selectOne("user.login",vo);
 		
 		return user;
+	}
+
+	public int update(UserVO vo) {
+		System.out.println("UserDAO.update() 에 들어갔슘니돠!!!");
+		System.out.println("UserDAO : "+vo);
+		int count = sqlSession.update("user.update",vo);
+		System.out.println(count);
+		
+		return count;
 	}
 }
