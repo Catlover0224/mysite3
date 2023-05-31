@@ -3,6 +3,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVO;
+import com.javaex.vo.UserVO;
 
 @Controller
 public class BoardController {
@@ -52,6 +55,33 @@ public class BoardController {
 		System.out.println("BoardController.remove()");
 		
 		boardService.remove(no);
+		
+		List<BoardVO> boardList = boardService.getList();
+		model.addAttribute("boardList", boardList);
+		
+		return "/board/list";
+	}
+	
+	//보드 추가폼
+	@RequestMapping("/board/writeForm")
+	public String writeForm(HttpSession session, @ModelAttribute BoardVO vo) {
+		System.out.println("BoardController.writeForm()");
+		
+		return "/board/writeForm";
+	}
+	
+	//보드 추가
+	@RequestMapping("/board/insert")
+	public String insert(HttpSession session, @ModelAttribute BoardVO vo, Model model) {
+		System.out.println("BoardController.insert()");
+		UserVO userVO =(UserVO)session.getAttribute("user");
+		System.out.println(userVO);
+		System.out.println(vo);
+		vo.setWriter(userVO.getUserName());
+		System.out.println(vo);
+		
+		boardService.insert(vo);
+		
 		List<BoardVO> boardList = boardService.getList();
 		model.addAttribute("boardList", boardList);
 		

@@ -35,4 +35,9 @@ public class BoardService {
 		System.out.println("BoardService.remove()");
 		dao.remove(no);
 	}
+
+	public void insert(BoardVO vo) {
+		System.out.println("BoardService.insert()");
+		dao.insert(vo);
+	}
 }

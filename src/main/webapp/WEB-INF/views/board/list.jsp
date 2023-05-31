@@ -94,7 +94,7 @@
 						</ul>
 						<div class="clear"></div>
 					</div>
-					<a id="btn_write" href="">글쓰기</a>
+					<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 				
 				</div>
 				<!-- //list -->

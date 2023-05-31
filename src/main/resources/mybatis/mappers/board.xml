@@ -36,4 +36,10 @@
 		DELETE FROM board
 		WHERE no = #{no}
 	</delete>
+	
+	<!-- 등록 -->
+	<insert id="insert" parameterType="com.javaex.vo.BoardVO">
+		INSERT INTO board (no, title, writer, views, boarddate, content)
+		VALUES (board_seq.NEXTVAL, #{title}, #{writer}, 0, SYSDATE, #{content})
+	</insert>
 </mapper>

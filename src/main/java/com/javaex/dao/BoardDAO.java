@@ -36,4 +36,9 @@ public class BoardDAO {
 		System.out.println(no);
 		sqlSession.delete("board.remove",no);
 	}
+
+	public void insert(BoardVO vo) {
+		System.out.println("BoardDAO.insert()");
+		sqlSession.insert("board.insert",vo);
+	}
 }
