@@ -1,7 +1,9 @@
 package com.javaex.controller;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -88,15 +90,20 @@ public class BoardController {
 		return "/board/list";
 	}
 	
-	//보드 보기
+	// 보드 보기
 	@RequestMapping("/board/read")
 	public String read(@RequestParam("no") int no, Model model) {
 		System.out.println("BoardController.read()");
 		System.out.println(no);
-		
+
+	
+		boardService.increaseViews(no); // 조회수 증가 메서드 호출
+			
+
+
 		BoardVO vo = boardService.read(no);
 		model.addAttribute("board", vo);
-		
+
 		return "/board/read";
 	}
 	

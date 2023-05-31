@@ -44,17 +44,24 @@
 	</insert>
 	
 	<!-- 읽음 -->
-		<select id="read" resultType="com.javaex.vo.BoardVO">
+	<select id="read" resultType="com.javaex.vo.BoardVO">
 		<![CDATA[
 			SELECT 
-			    no,
-			    title,
-			    writer,
-			    views,
-			    boarddate,
-			    content
-			FROM board
+				no,
+				title,
+				writer,
+				views,
+				boarddate,
+				content
+				FROM board
 			where no = #{no}
 		]]>
 	</select>
+	
+	<!-- 조회수 -->
+	<update id="increaseViews">
+		UPDATE board
+		SET views = views + 1
+		WHERE no = #{no}
+	</update>
 </mapper>

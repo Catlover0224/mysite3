@@ -48,4 +48,8 @@ public class BoardDAO {
 		
 		return vo;
 	}
+
+	public void increaseViews(int no) {
+		sqlSession.update("board.increaseViews", no);
+	}
 }

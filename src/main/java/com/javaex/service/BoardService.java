@@ -47,4 +47,9 @@ public class BoardService {
 		
 		return vo;
 	}
+
+	public void increaseViews(int no) {
+		dao.increaseViews(no); // 게시물의 조회수를 증가시키는 DAO 메서드 호출
+	}
+
 }
