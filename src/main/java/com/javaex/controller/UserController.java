@@ -47,7 +47,7 @@ public class UserController {
 		System.out.println("UesrController.loginForm()에 들어갔슘니돠!!!");
 
 		return "/user/loginForm";
-	}//loginForm().end
+	}// loginForm().end
 
 	// 로그인
 	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
@@ -59,50 +59,54 @@ public class UserController {
 		System.out.println(user);
 
 		session.setAttribute("user", user);
-		if(user !=null) {
+		if (user != null) {
 			System.out.println("로그인성공");
 			return "redirect:/main";
-		}else {
+		} else {
 			System.out.println("로그인실패");
 			return "/user/loginForm";
 		}
-	}//login().end
-	
+	}// login().end
+
 	// 로그아웃
-	@RequestMapping(value = "/user/logout", method = {RequestMethod.GET})
+	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET })
 	public String logout(HttpSession session) {
 		System.out.println("UesrController.logout()에 들어갔슘니돠!!!");
-		
+
 		session.invalidate();
 		return "redirect:/main";
-	}//logout().end
-	
-	//모디퐈이
+	}// logout().end
+
+	// 모디퐈이
 	@RequestMapping(value = "/user/modifyForm")
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UesrController.modifyForm()에 들어갔슘니돠!!!");
-		
-		UserVO vo = (UserVO)session.getAttribute("user");
+
+		UserVO vo = (UserVO) session.getAttribute("user");
 		System.out.println("UesrController.modifyForm()" + vo);
-		
-		
+
 		return "/user/modifyForm";
-	}//modifyForm().end
-	
-	//수정~
-	@RequestMapping(value = "/user/update", method = {RequestMethod.GET,RequestMethod.POST})
-	public String update(@ModelAttribute UserVO vo) {
+	}// modifyForm().end
+
+	// 수정~
+	@RequestMapping(value = "/user/update", method = { RequestMethod.GET, RequestMethod.POST })
+	public String update(HttpSession session, @ModelAttribute UserVO vo) {
 		System.out.println("UesrController.update()에 들어갔슘니돠!!!");
-		System.out.println("UesrController.update()" + vo);
-		
-		if(userService.update(vo)>0) {
+		UserVO sessionuUserVO = (UserVO) session.getAttribute("user");
+		System.out.println("sessionuUserVO : " + sessionuUserVO);
+		System.out.println("vo : " + vo);
+
+		vo.setNo(sessionuUserVO.getNo());
+		vo.setUserId(sessionuUserVO.getUserId());
+
+		System.out.println("vo : " + vo);
+
+		if (userService.update(vo) > 0) {
 			System.out.println("업데이트성공");
 			return "redirect:/main";
-		}else {
+		} else {
 			System.out.println("업데이트실패");
 			return "/user/modifyForm";
 		}
-		
-
-	}//update().end
+	}// update().end
 }

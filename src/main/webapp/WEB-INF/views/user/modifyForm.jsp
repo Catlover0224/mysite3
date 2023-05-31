@@ -55,7 +55,7 @@
 
 			<div id="user">
 				<div id="modifyForm">
-					<form action="./user/update" method="GET">
+					<form action="${pageContext.request.contextPath}/user/update" method="GET">
 
 						<!-- 아이디 -->
 						<div class="form-group">
