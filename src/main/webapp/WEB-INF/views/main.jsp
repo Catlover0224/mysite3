@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인</title>
-<link href="/mysite3/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite3/assets/css/main.css" rel="stylesheet" type="text/css">
+<title>Main</title>
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -34,7 +34,7 @@
 
 			<div id="index"> 
 			
-				<img id="profile-img" src="/mysite3/assets/image/profile.jpg">
+				<img id="profile-img" src="${pageContext.request.contextPath}/assets/image/profile.jpg">
 				
 				<div id="greetings">
 					<p class="text-xlarge">
