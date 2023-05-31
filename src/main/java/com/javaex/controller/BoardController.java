@@ -1,7 +1,9 @@
 package com.javaex.controller;
 
-import java.util.ArrayList;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +16,17 @@ import com.javaex.vo.BoardVO;
 public class BoardController {
 
 	@Autowired
-	private BoardService boardService; 
+	private BoardService boardService;
 	
 	//보드 리스트
-	@RequestMapping("board/list")
+	@RequestMapping("/board/list")
 	public String list(Model model) {
 		System.out.println("BoardController.list()");
 		
-		//ArrayList<BoardVO> boardList =
+		List<BoardVO> boardList = boardService.getList();
+		
+		model.addAttribute("boardList", boardList);
+				
 		return "/board/list";
 	}
 }

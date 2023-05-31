@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@
 			<ul>
 				<li><a href="">방명록</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
 				<li><a href="">입사지원서</a></li>
 			</ul>
 			<div class="clear"></div>
@@ -73,49 +73,18 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr>
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
-							<tr class="last">
-								<td>123</td>
-								<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-								<td>정우성</td>
-								<td>1232</td>
-								<td>2020-12-23</td>
-								<td><a href="">[삭제]</a></td>
-							</tr>
+						    <c:forEach var="board" items="${boardList}">
+						        <tr>
+						            <td>${board.no}</td>
+						            <td class="text-left"><a href="#">${board.title}</a></td>
+						            <td>${board.writer}</td>
+						            <td>${board.views}</td>
+						            <td>${board.date}</td>
+						            <td><a href="">[삭제]</a></td>
+						        </tr>
+						    </c:forEach>
 						</tbody>
 					</table>
-		
 					<div id="paging">
 						<ul>
 							<li><a href="">◀</a></li>
@@ -131,8 +100,6 @@
 							<li><a href="">10</a></li>
 							<li><a href="">▶</a></li>
 						</ul>
-						
-						
 						<div class="clear"></div>
 					</div>
 					<a id="btn_write" href="">글쓰기</a>
