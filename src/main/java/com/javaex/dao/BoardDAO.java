@@ -30,4 +30,10 @@ public class BoardDAO {
 		
 		return list;
 	}
+
+	public void remove(int no) {
+		System.out.println("BoardDAO.remove()");
+		System.out.println(no);
+		sqlSession.delete("board.remove",no);
+	}
 }

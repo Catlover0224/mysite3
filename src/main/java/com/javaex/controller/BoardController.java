@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,18 @@ public class BoardController {
 		
 		List<BoardVO> boardList = boardService.search(title);
 		
+		model.addAttribute("boardList", boardList);
+		
+		return "/board/list";
+	}
+	
+	//보드 삭제
+	@RequestMapping(value = "/board/remove", method = {RequestMethod.GET,RequestMethod.POST})
+	public String remove(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController.remove()");
+		
+		boardService.remove(no);
+		List<BoardVO> boardList = boardService.getList();
 		model.addAttribute("boardList", boardList);
 		
 		return "/board/list";

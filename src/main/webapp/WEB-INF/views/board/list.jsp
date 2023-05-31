@@ -72,19 +72,19 @@
 						            <td>${board.writer}</td>
 						            <td>${board.views}</td>
 						            <td>${board.boardDate}</td>
-						            <td><a href="">[삭제]</a></td>
+						            <td><a href="${pageContext.request.contextPath}/board/remove?no=${board.no}">[삭제]</a></td>
 						        </tr>
 						    </c:forEach>
 						</tbody>
 					</table>
 					<div id="paging">
 						<ul>
-							<li><a href="">◀</a></li>
+							<li class="active"><a href="">◀</a></li>
 							<li><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">4</a></li>
-							<li class="active"><a href="">5</a></li>
+							<li><a href="">5</a></li>
 							<li><a href="">6</a></li>
 							<li><a href="">7</a></li>
 							<li><a href="">8</a></li>

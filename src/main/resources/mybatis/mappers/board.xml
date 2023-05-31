@@ -30,4 +30,10 @@
 			where title = #{title}
 		]]>
 	</select>
+	
+	<!-- 삭제 -->
+	<delete id="remove">
+		DELETE FROM board
+		WHERE no = #{no}
+	</delete>
 </mapper>

@@ -25,9 +25,14 @@ public class BoardService {
 
 	//검색
 	public List<BoardVO> search(String title) {
-
+		System.out.println("BoardService.search()");
 		List<BoardVO> list =dao.search(title);
 		
 		return list;
+	}
+
+	public void remove(int no) {
+		System.out.println("BoardService.remove()");
+		dao.remove(no);
 	}
 }
