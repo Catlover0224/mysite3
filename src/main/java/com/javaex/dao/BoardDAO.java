@@ -41,4 +41,11 @@ public class BoardDAO {
 		System.out.println("BoardDAO.insert()");
 		sqlSession.insert("board.insert",vo);
 	}
+
+	public BoardVO read(int no) {
+		System.out.println("BoardDAO.read()");
+		BoardVO vo= sqlSession.selectOne("board.read",no);
+		
+		return vo;
+	}
 }

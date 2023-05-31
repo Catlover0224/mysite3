@@ -40,4 +40,11 @@ public class BoardService {
 		System.out.println("BoardService.insert()");
 		dao.insert(vo);
 	}
+
+	public BoardVO read(int no) {
+		System.out.println("BoardService.read()");
+		BoardVO vo =dao.read(no);
+		
+		return vo;
+	}
 }

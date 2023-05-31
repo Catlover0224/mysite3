@@ -87,4 +87,24 @@ public class BoardController {
 		
 		return "/board/list";
 	}
+	
+	//보드 보기
+	@RequestMapping("/board/read")
+	public String read(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController.read()");
+		System.out.println(no);
+		
+		BoardVO vo = boardService.read(no);
+		model.addAttribute("board", vo);
+		
+		return "/board/read";
+	}
+	
+	//보드 수정폼
+	public String modifyForm() {
+	
+		return null;
+	}
+	
+	
 }

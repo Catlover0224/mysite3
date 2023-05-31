@@ -42,4 +42,19 @@
 		INSERT INTO board (no, title, writer, views, boarddate, content)
 		VALUES (board_seq.NEXTVAL, #{title}, #{writer}, 0, SYSDATE, #{content})
 	</insert>
+	
+	<!-- 읽음 -->
+		<select id="read" resultType="com.javaex.vo.BoardVO">
+		<![CDATA[
+			SELECT 
+			    no,
+			    title,
+			    writer,
+			    views,
+			    boarddate,
+			    content
+			FROM board
+			where no = #{no}
+		]]>
+	</select>
 </mapper>
