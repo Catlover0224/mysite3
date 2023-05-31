@@ -22,4 +22,12 @@ public class BoardDAO {
 		
 		return list;
 	}
+
+	public List<BoardVO> search(String title) {
+		System.out.println("BoardDAO.search()");
+		List<BoardVO> list = sqlSession.selectList("board.search",title);
+		System.out.println(list);
+		
+		return list;
+	}
 }

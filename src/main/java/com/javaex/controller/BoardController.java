@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVO;
@@ -19,7 +21,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	//보드 리스트
-	@RequestMapping("/board/list")
+	@RequestMapping("/board/getlist")
 	public String list(Model model) {
 		System.out.println("BoardController.list()");
 		
@@ -27,6 +29,19 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardList);
 				
+		return "/board/list";
+	}
+	
+	//보드 검색
+	@RequestMapping(value = "/board/search", method = {RequestMethod.GET, RequestMethod.POST})
+	public String search(Model model, @RequestParam("title") String title) {
+		System.out.println("BoardController.search()");
+		System.out.println(title);
+		
+		List<BoardVO> boardList = boardService.search(title);
+		
+		model.addAttribute("boardList", boardList);
+		
 		return "/board/list";
 	}
 }

@@ -1,5 +1,7 @@
 package com.javaex.vo;
 
+import java.util.Date;
+
 public class BoardVO {
 
 	//필드
@@ -7,7 +9,7 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private String views;
-	private String boardDate;
+	private Date boardDate;
 	private String content;
 	
 	//생성자
@@ -15,7 +17,7 @@ public class BoardVO {
 		super();
 	}
 	
-	public BoardVO(int no, String title, String writer, String views, String boardDate, String content) {
+	public BoardVO(int no, String title, String writer, String views, Date boardDate, String content) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -58,11 +60,11 @@ public class BoardVO {
 		this.views = views;
 	}
 
-	public String getBoardDate() {
+	public Date getBoardDate() {
 		return boardDate;
 	}
 
-	public void setBoardDate(String boardDate) {
+	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
 

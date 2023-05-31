@@ -14,10 +14,19 @@ public class BoardService {
 	@Autowired
 	private BoardDAO dao;
 
+	//리스트
 	public List<BoardVO> getList() {
 		System.out.println("BoardService.getList()");
 		
 		List<BoardVO> list =dao.getList();
+		
+		return list;
+	}
+
+	//검색
+	public List<BoardVO> search(String title) {
+
+		List<BoardVO> list =dao.search(title);
 		
 		return list;
 	}

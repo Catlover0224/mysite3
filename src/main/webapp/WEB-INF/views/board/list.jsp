@@ -18,15 +18,7 @@
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 		
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
 		<!-- //nav -->
 
 		<div id="aside">
@@ -55,9 +47,9 @@
 
 			<div id="board">
 				<div id="list">
-					<form action="" method="">
+					<form action="${pageContext.request.contextPath}/board/search" method="get">
 						<div class="form-group text-right">
-							<input type="text">
+							<input type="text" name="title" value="">
 							<button type="submit" id=btn_search>검색</button>
 						</div>
 					</form>
@@ -79,7 +71,7 @@
 						            <td class="text-left"><a href="#">${board.title}</a></td>
 						            <td>${board.writer}</td>
 						            <td>${board.views}</td>
-						            <td>${board.date}</td>
+						            <td>${board.boardDate}</td>
 						            <td><a href="">[삭제]</a></td>
 						        </tr>
 						    </c:forEach>
