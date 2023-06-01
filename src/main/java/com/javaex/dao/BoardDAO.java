@@ -56,11 +56,13 @@ public class BoardDAO {
 
 	//조회수 증가
 	public void increaseViews(int no) {
+		System.out.println("BoardDAO.increaseViews()");
 		sqlSession.update("board.increaseViews", no);
 	}
 
 	//수정
 	public void update(BoardVO vo) {
+		System.out.println("BoardDAO.update()");
 		sqlSession.update("board.update", vo);
 	}
 }

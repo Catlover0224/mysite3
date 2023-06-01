@@ -48,7 +48,8 @@
 
 			<div id="board">
 				<div id="modifyForm">
-					<form action="/board/update" method="get">
+					<form action="${pageContext.request.contextPath}/board/update" method="get">
+						
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">작성자</span>
@@ -73,17 +74,15 @@
 							<input type="text" id="txt-title" name="title" value="${board.title}">
 						</div>
 					
-						
-					
 						<!-- 내용 -->
 						<div class="form-group">
-							<textarea id="txt-content">${board.content}
+							<textarea id="txt-content" name="content" value="">${board.content}
 							</textarea>
 						</div>
 						
 						<a id="btn_cancel" href="${pageContext.request.contextPath}/board/getlist">취소</a>
 						<button id="btn_modify" type="submit" >수정</button>
-						
+						<input type="hidden" name="no" value="${board.no}">
 					</form>
 	                <!-- //form -->
 				</div>

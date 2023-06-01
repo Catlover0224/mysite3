@@ -112,13 +112,14 @@ public class BoardController {
 	
 	//보드 수정
 	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST})
-	public String update(@ModelAttribute BoardVO vo) {
+	public String update(@ModelAttribute BoardVO vo,@RequestParam("no") int no) {
 		System.out.println("BoardController.update()");
+		vo.setNo(no);
 		System.out.println(vo);
 		
 		boardService.update(vo);
 		
-		return "";
+		return "redirect:/board/list";
 	}
 	
 	

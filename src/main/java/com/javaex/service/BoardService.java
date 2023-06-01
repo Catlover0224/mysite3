@@ -53,11 +53,13 @@ public class BoardService {
 
 	// 조회수 증가
 	public void increaseViews(int no) {
+		System.out.println("BoardService.increaseViews()");
 		dao.increaseViews(no); 
 	}
 
 	//수정
 	public void update(BoardVO vo) {
+		System.out.println("BoardService.update()");
 		dao.update(vo);
 	}
 
