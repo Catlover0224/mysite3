@@ -10,7 +10,7 @@
 			    title,
 			    writer,
 			    views,
-			    boarddate,
+			    TO_CHAR(boardDate, 'YY-MM-DD') AS boardDate,
 			    content
 			FROM board
 		]]>
@@ -24,7 +24,7 @@
 			    title,
 			    writer,
 			    views,
-			    boarddate,
+			    TO_CHAR(boardDate, 'YY-MM-DD') AS boardDate,
 			    content
 			FROM board
 			where title = #{title}
@@ -51,7 +51,7 @@
 				title,
 				writer,
 				views,
-				boarddate,
+				TO_CHAR(boardDate, 'YY-MM-DD') AS boardDate,
 				content
 				FROM board
 			where no = #{no}
@@ -62,6 +62,14 @@
 	<update id="increaseViews">
 		UPDATE board
 		SET views = views + 1
+		WHERE no = #{no}
+	</update>
+	
+	<!-- 수정 -->
+	<update id="update">
+		UPDATE board
+		SET title=#{title},
+			content = #{content}
 		WHERE no = #{no}
 	</update>
 </mapper>

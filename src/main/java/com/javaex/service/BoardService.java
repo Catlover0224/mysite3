@@ -31,16 +31,19 @@ public class BoardService {
 		return list;
 	}
 
+	//게시물 삭제
 	public void remove(int no) {
 		System.out.println("BoardService.remove()");
 		dao.remove(no);
 	}
 
+	//게시물 등록
 	public void insert(BoardVO vo) {
 		System.out.println("BoardService.insert()");
 		dao.insert(vo);
 	}
 
+	//게시물 보기
 	public BoardVO read(int no) {
 		System.out.println("BoardService.read()");
 		BoardVO vo =dao.read(no);
@@ -48,8 +51,14 @@ public class BoardService {
 		return vo;
 	}
 
+	// 조회수 증가
 	public void increaseViews(int no) {
-		dao.increaseViews(no); // 게시물의 조회수를 증가시키는 DAO 메서드 호출
+		dao.increaseViews(no); 
+	}
+
+	//수정
+	public void update(BoardVO vo) {
+		dao.update(vo);
 	}
 
 }

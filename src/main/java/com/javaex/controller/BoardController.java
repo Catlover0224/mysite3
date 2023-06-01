@@ -21,13 +21,14 @@ import com.javaex.vo.BoardVO;
 import com.javaex.vo.UserVO;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
 	
 	//보드 리스트
-	@RequestMapping("/board/getlist")
+	@RequestMapping("/list")
 	public String list(Model model) {
 		System.out.println("BoardController.list()");
 		
@@ -39,7 +40,7 @@ public class BoardController {
 	}
 	
 	//보드 검색
-	@RequestMapping(value = "/board/search", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/search", method = {RequestMethod.GET, RequestMethod.POST})
 	public String search(Model model, @RequestParam("title") String title) {
 		System.out.println("BoardController.search()");
 		System.out.println(title);
@@ -52,20 +53,17 @@ public class BoardController {
 	}
 	
 	//보드 삭제
-	@RequestMapping(value = "/board/remove", method = {RequestMethod.GET,RequestMethod.POST})
-	public String remove(@RequestParam("no") int no, Model model) {
+	@RequestMapping(value = "/remove", method = {RequestMethod.GET,RequestMethod.POST})
+	public String remove(@RequestParam("no") int no) {
 		System.out.println("BoardController.remove()");
 		
 		boardService.remove(no);
 		
-		List<BoardVO> boardList = boardService.getList();
-		model.addAttribute("boardList", boardList);
-		
-		return "/board/list";
+		return "redirect:/board/list";
 	}
 	
 	//보드 추가폼
-	@RequestMapping("/board/writeForm")
+	@RequestMapping("/writeForm")
 	public String writeForm(HttpSession session, @ModelAttribute BoardVO vo) {
 		System.out.println("BoardController.writeForm()");
 		
@@ -73,8 +71,8 @@ public class BoardController {
 	}
 	
 	//보드 추가
-	@RequestMapping("/board/insert")
-	public String insert(HttpSession session, @ModelAttribute BoardVO vo, Model model) {
+	@RequestMapping("/insert")
+	public String insert(HttpSession session, @ModelAttribute BoardVO vo) {
 		System.out.println("BoardController.insert()");
 		UserVO userVO =(UserVO)session.getAttribute("user");
 		System.out.println(userVO);
@@ -84,23 +82,17 @@ public class BoardController {
 		
 		boardService.insert(vo);
 		
-		List<BoardVO> boardList = boardService.getList();
-		model.addAttribute("boardList", boardList);
-		
-		return "/board/list";
+		return "redirect:/board/list";
 	}
 	
 	// 보드 보기
-	@RequestMapping("/board/read")
+	@RequestMapping("/read")
 	public String read(@RequestParam("no") int no, Model model) {
 		System.out.println("BoardController.read()");
 		System.out.println(no);
 
-	
 		boardService.increaseViews(no); // 조회수 증가 메서드 호출
 			
-
-
 		BoardVO vo = boardService.read(no);
 		model.addAttribute("board", vo);
 
@@ -108,9 +100,25 @@ public class BoardController {
 	}
 	
 	//보드 수정폼
-	public String modifyForm() {
+	@RequestMapping(value = "/modifyForm", method = {RequestMethod.GET,RequestMethod.POST})
+	public String modifyForm(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController.modifyForm()");
+		
+		BoardVO vo = boardService.read(no);
+		model.addAttribute("board", vo);
+		
+		return "/board/modifyForm";
+	}
 	
-		return null;
+	//보드 수정
+	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST})
+	public String update(@ModelAttribute BoardVO vo) {
+		System.out.println("BoardController.update()");
+		System.out.println(vo);
+		
+		boardService.update(vo);
+		
+		return "";
 	}
 	
 	

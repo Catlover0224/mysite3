@@ -79,7 +79,7 @@
 							</span>
 						</div>
 						
-						<a id="btn_modify" href="">수정</a>
+						<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm?no=${board.no}">수정</a>
 						<a id="btn_modify" href="${pageContext.request.contextPath}/board/getlist">목록</a>
 						
 					</form>
