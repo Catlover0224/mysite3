@@ -7,7 +7,7 @@
 <title>User JoinForm</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -49,7 +49,8 @@
 						<div class="form-group">
 							<label class="form-text" for="input-uid">아이디</label> 
 							<input type="text" id="input-uid" name="userId" value="" placeholder="아이디를 입력하세요">
-							<button type="button" id="">중복체크</button>
+							<button type="button" id="btnIdCheck">중복체크</button>
+							<p id="idCheckMsg">아이디를 입력하라옹</p>
 						</div>
 
 						<!-- 비밀번호 -->
@@ -107,5 +108,48 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	//아이디 체크 버튼 클릭했을때
+	$("#btnIdCheck").on("click", function() {
+		console.log("버튼 클릭");
+
+		//id 추출
+		var id = $("[name=userId]").val();
+
+		console.log(id);
+
+		//통신 id
+		$.ajax({
+			url : "${pageContext.request.contextPath }/user/idcheck",
+			type : "post",
+
+			data : {id : id},
+
+			dataType : "json",
+			success : function(jsonResult) {
+				console.log(jsonResult);
+
+				if(jsonResult.result == 'success'){
+					//사용가능하진 불가능 한지 표현한다
+					if(jsonResult.data == true){
+						$("#idCheckMsg").css("color","blue");  
+						$("#idCheckMsg").html( id+ "는 사용가능 합니다.");  
+					}else{
+						$("#idCheckMsg").css("color","red");  
+						$("#idCheckMsg").html( id+ "는 사용중 입니다."); 
+					}//inner if
+				}else{
+					  
+				}
+			},//success : function(jsonResult)
+			error : function(XHR, status, error) {
+			  
+				console.error(status + " : " + error);
+			}
+		});//ajax
+
+	}); //$("#btnIdCheck").on
+</script>
 
 </html>

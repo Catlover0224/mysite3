@@ -36,5 +36,21 @@ public class UserService {
 		
 		return cnt;
 	}
+	
+	//아이디 체크
+	public boolean idCheck(String id) {
+		System.out.println("UserService.idCheck()");
+		UserVO vo = dao.idCheck(id);
+		boolean result;
+		
+		if(vo==null) {
+			result=true;
+		}else {
+			result=false;
+		}
+		System.out.println("idCheck."+result);
+		
+		return result;
+	}
 
 }

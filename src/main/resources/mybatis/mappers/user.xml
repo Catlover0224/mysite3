@@ -38,4 +38,14 @@
 			WHERE no = #{no}
 		]]>
 	</update>
+	
+	<!--아이디 체크-->
+		<select id="idCheck" resultType="com.javaex.vo.UserVO">
+		<![CDATA[
+			select no,
+				id userId
+			from users
+			where id= #{userId}
+		]]>
+	</select>
 </mapper>

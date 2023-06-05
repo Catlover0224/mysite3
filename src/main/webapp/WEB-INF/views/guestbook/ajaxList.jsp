@@ -48,7 +48,7 @@
             <!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath }/guestbook/write" method="get">
+				<%-- <form action="${pageContext.request.contextPath }/guestbook/write" method="get"> --%>
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -75,7 +75,7 @@
 
 						</table>
 						<!-- //guestWrite -->
-					</form>
+				<!-- 	</form> -->
 
 					<c:forEach items="${guestbookList}" var="guestVo">
 						<table class="guestRead">
@@ -112,5 +112,12 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	$("btnSubmit").on("click",function(){
+		console.log("버튼클릭");
+	});
+
+</script>
 
 </html>

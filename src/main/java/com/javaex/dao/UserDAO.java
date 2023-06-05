@@ -43,4 +43,14 @@ public class UserDAO {
 		
 		return count;
 	}
+
+	//아이디 체크
+	public UserVO idCheck(String id) {
+		System.out.println("UserDAO.idCheck() 에 들어갔슘니돠!!!");
+		
+		UserVO vo = sqlSession.selectOne("user.idCheck", id);
+		System.out.println(vo);
+		
+		return vo;
+	}
 }

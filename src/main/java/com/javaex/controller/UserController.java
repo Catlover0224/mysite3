@@ -10,18 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
+import com.javaex.vo.JsonResult;
 import com.javaex.vo.UserVO;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
 	// 회원가입 폼
-	@RequestMapping("/user/joinForm")
+	@RequestMapping("/joinForm")
 	public String joinForm() {
 		System.out.println("UesrController.joinForm()에 들어갔슘니돠!!!");
 
@@ -29,7 +32,7 @@ public class UserController {
 	} // joinForm().end
 
 	// 회원가입
-	@RequestMapping(value = "/user/join", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVO vo) {
 		System.out.println("UesrController.join()에 들어갔슘니돠!!!");
 
@@ -42,7 +45,7 @@ public class UserController {
 	}// join().end
 
 	// 로그인 폼
-	@RequestMapping(value = "/user/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		System.out.println("UesrController.loginForm()에 들어갔슘니돠!!!");
 
@@ -50,7 +53,7 @@ public class UserController {
 	}// loginForm().end
 
 	// 로그인
-	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVO vo, HttpSession session) {
 		System.out.println("UesrController.login()에 들어갔슘니돠!!!");
 		System.out.println("UesrController.login()" + vo);
@@ -69,7 +72,7 @@ public class UserController {
 	}// login().end
 
 	// 로그아웃
-	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET })
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET })
 	public String logout(HttpSession session) {
 		System.out.println("UesrController.logout()에 들어갔슘니돠!!!");
 
@@ -78,7 +81,7 @@ public class UserController {
 	}// logout().end
 
 	// 모디퐈이
-	@RequestMapping(value = "/user/modifyForm")
+	@RequestMapping(value = "/modifyForm")
 	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UesrController.modifyForm()에 들어갔슘니돠!!!");
 
@@ -89,7 +92,7 @@ public class UserController {
 	}// modifyForm().end
 
 	// 수정~
-	@RequestMapping(value = "/user/update", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/update", method = { RequestMethod.GET, RequestMethod.POST })
 	public String update(HttpSession session, @ModelAttribute UserVO vo) {
 		System.out.println("UesrController.update()에 들어갔슘니돠!!!");
 		UserVO sessionuUserVO = (UserVO) session.getAttribute("user");
@@ -109,4 +112,22 @@ public class UserController {
 			return "/user/modifyForm";
 		}
 	}// update().end
+	
+	
+	//회원가입 id체크
+	@ResponseBody
+	@RequestMapping(value = "/idcheck",method = {RequestMethod.GET,RequestMethod.POST})
+	public JsonResult idCheck(@RequestParam("id")String id) {
+		System.out.println("UesrController.idCheck()에 들어갔슘니돠!!!");
+		System.out.println(id);
+		
+		boolean data =userService.idCheck(id);
+		
+		JsonResult jsonResult = new JsonResult();
+		jsonResult.success(data);
+		
+//		jsonResult.fail("통신오류");
+		
+		return jsonResult;
+	}
 }
