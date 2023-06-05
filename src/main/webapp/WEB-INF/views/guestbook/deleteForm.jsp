@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>GuestBook DeleteForm</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }./assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -78,10 +80,10 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2023 이은우. All right reserved
-		</div>
 		<!-- //footer -->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<!-- //footer -->
+
 
 	</div>
 	<!-- //wrap -->

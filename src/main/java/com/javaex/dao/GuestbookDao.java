@@ -44,7 +44,7 @@ public class GuestbookDao {
 	
 	
 
-	
+	/*
 	// 방명록 글 저장 -ajax
 	public int insertGuestbookKey(GuestbookVo guestbookVo) {
 		System.out.println("[guestbookDao.insertGuestbookKey()]");
@@ -59,7 +59,7 @@ public class GuestbookDao {
 		
 		return sqlSession.selectOne("guestbook.selelctGuestbook", no);
 	}
-	
+	*/
 	
 	
 	

@@ -58,7 +58,9 @@
 		]]>
 	</select>
 	
-	<!-- 조회수 -->
+	
+	
+		<!-- 조회수 -->
 	<update id="increaseViews">
 		UPDATE board
 		SET views = views + 1
@@ -72,4 +74,5 @@
 			content = #{content}
 		WHERE no = #{no}
 	</update>
+
 </mapper>

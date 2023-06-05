@@ -9,6 +9,8 @@
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -69,7 +71,7 @@
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
 								</tr>
 								<tr class="button-area">
-									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
+									<td colspan="4" class="text-center"><button id="btnSubmit" type="submit">등록</button></td>
 								</tr>
 							</tbody>
 
@@ -114,7 +116,7 @@
 </body>
 
 <script type="text/javascript">
-	$("btnSubmit").on("click",function(){
+	$("#btnSubmit").on("click",function(){
 		console.log("버튼클릭");
 	});
 

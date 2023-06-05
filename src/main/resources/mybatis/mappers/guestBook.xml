@@ -40,7 +40,6 @@
 	
 	
 	
-	
 	<!-- 방명록 글 저장(키값 저장) ajax-->
 	<insert id="insertGuestbookKey" parameterType="com.javaex.vo.GuestbookVo">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
@@ -72,5 +71,5 @@
 			where no = #{no}
 		]]>
 	</select>
-	
+ 
 </mapper>

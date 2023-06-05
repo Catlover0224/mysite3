@@ -59,10 +59,6 @@
 		<!-- //full-content -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2023 이은우. All right reserved
-		</div>
-		<!-- //footer -->
 
 	</div>
 	<!-- //wrap -->

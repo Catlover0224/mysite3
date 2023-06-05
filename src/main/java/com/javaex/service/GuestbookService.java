@@ -43,6 +43,8 @@ public class GuestbookService {
 	
 	
 	
+	/*
+	
 	// 방명록 글 저장_게시글 가져오기
 	public GuestbookVo writeResultVo(GuestbookVo guestbookVo) {
 		System.out.println("[guestbookService.writeResultVo()]");
@@ -71,6 +73,6 @@ public class GuestbookService {
 		
 	}
 	
-	
+	*/
 	
 }

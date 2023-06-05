@@ -12,21 +12,23 @@ import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
-public class ApiGuestBookController {
+@RequestMapping(value="/api/guestbook")
+public class ApiGuestbookController {
 
 	@Autowired
-	private GuestbookService guestBookService;
-	
-	//ajax방명록 첫페이지
-	@RequestMapping(value = "/api/guestBook/addList",method = {RequestMethod.GET,RequestMethod.POST})
+	private GuestbookService guestbookService;
+
+	/* 방명록 리스트 가져오기 */
+	@RequestMapping(value = "/addList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addList(Model model) {
-		System.out.println("ApiGuestBookController.addList");
-	
-		List<GuestbookVo> guestBookList=guestBookService.getGuestList();
-		System.out.println(guestBookList);
-		
-		model.addAttribute("guestBookList", guestBookList);
-		
+		System.out.println("ApiGuestbookController.list()");
+
+		List<GuestbookVo> guestbookList = guestbookService.getGuestList();
+
+		model.addAttribute("guestbookList", guestbookList);
+
 		return "guestbook/ajaxList";
 	}
+
+	
 }
