@@ -39,11 +39,8 @@ public class GuestbookService {
 
 		int count = guestbookDao.deleteGuest(guestbookVo);
 		return count;
-	}
+	}	
 	
-	
-	
-	/*
 	
 	// 방명록 글 저장_게시글 가져오기
 	public GuestbookVo writeResultVo(GuestbookVo guestbookVo) {
@@ -73,6 +70,10 @@ public class GuestbookService {
 		
 	}
 	
-	*/
+	public void addGuest(GuestbookVo vo){
+		
+		System.out.println("guestbookService.addGuest()");
+		guestbookDao.insertSelectKey(vo);
+	}
 	
 }

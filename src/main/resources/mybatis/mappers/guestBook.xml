@@ -71,5 +71,32 @@
 			where no = #{no}
 		]]>
 	</select>
+	
+	<!-- //ajax 방명록 등록때 사용 -->
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestbookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into guestbook
+			values (#{no},
+					#{name},
+					#{password},
+					#{content},
+					sysdate)
+		]]>
+	</insert>
  
+    <!-- no로 글1개 가져오기 -->
+   <select id="selectGuest" parameterType="int" resultType="com.javaex.vo.GuestbookVo">
+      <![CDATA[   
+         select  no,
+                 name,
+                 password,
+                 content,
+                 reg_date as regDate
+         from guestbook
+         where no = #{no}
+      ]]>
+   </select>
 </mapper>

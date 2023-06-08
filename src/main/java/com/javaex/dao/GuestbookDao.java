@@ -41,10 +41,6 @@ public class GuestbookDao {
 
 	
 	
-	
-	
-
-	/*
 	// 방명록 글 저장 -ajax
 	public int insertGuestbookKey(GuestbookVo guestbookVo) {
 		System.out.println("[guestbookDao.insertGuestbookKey()]");
@@ -59,8 +55,17 @@ public class GuestbookDao {
 		
 		return sqlSession.selectOne("guestbook.selelctGuestbook", no);
 	}
-	*/
 	
+	//ajax 방명록 등록때 사용
+	public int insertSelectKey(GuestbookVo vo) {
+		System.out.println("[guestbookDao.insertGuestResultVo()]");
+		
+		System.out.println(vo);
+		int cnt = sqlSession.insert("guestbook.insertSelectKey",vo);
+		System.out.println(vo);
+		
+		return cnt;
+	}
 	
 	
 	
