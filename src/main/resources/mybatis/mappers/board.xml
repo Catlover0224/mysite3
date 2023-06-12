@@ -2,6 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+	<!-- 게시글 토탈 갯수 -->
+	<select id="totalCount" resultType="int">
+		SELECT
+		    count(*)
+		FROM board;
+	</select>
+
+	<!-- 리스트 -->
+	<select id="getList3" parameterType="map" resultType="com.javaex.vo.BoardVO">
+		<![CDATA[
+		SELECT
+		    ort.rn,
+		    ort.no,
+		    ort.title,
+		    ort.content,
+		    ort.views,
+		    ort.boarddate,
+		    ort.writer
+		FROM (
+		    SELECT
+		        ROWNUM rn,
+		        ot.no,
+		        ot.title,
+		        ot.content,
+		        ot.views,
+		        ot.boarddate,
+		        ot.writer
+		    FROM (
+		        SELECT
+		            b.no,
+		            b.title,
+		            b.content,
+		            b.writer,
+		            b.views,
+		            b.boarddate
+		        FROM
+		            board b
+		        ORDER BY
+		            b.no DESC
+		    ) ot
+		) ort
+		WHERE
+    rn >= #{startRnum}
+	AND rn <= #{endRum}
+		]]>
+	</select>
+	
 	<!-- 리스트 -->
 	<select id="getList" resultType="com.javaex.vo.BoardVO">
 		<![CDATA[

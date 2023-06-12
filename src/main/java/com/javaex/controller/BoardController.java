@@ -3,6 +3,7 @@ package com.javaex.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,18 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	//게시판 리스트 페이징 기능 포함
+	@RequestMapping(value = "/list3", method = {RequestMethod.GET,RequestMethod.POST})
+	public String list3(@RequestParam("Page")int page, Model model) {
+		System.out.println("BoardController.list3()");
+		
+		Map<String, Object> pMap = boardService.getList3(page);
+		model.addAttribute("pMap", pMap);
+		System.out.println(pMap);
+		
+		return"/board/list3";
+	}
 	
 	//보드 리스트
 	@RequestMapping("/list")
@@ -75,13 +88,10 @@ public class BoardController {
 	public String insert(HttpSession session, @ModelAttribute BoardVO vo) {
 		System.out.println("BoardController.insert()");
 		UserVO userVO =(UserVO)session.getAttribute("user");
-		System.out.println(userVO);
-		System.out.println(vo);
+
 		vo.setWriter(userVO.getUserName());
-		System.out.println(vo);
-		
 		boardService.insert(vo);
-		
+			
 		return "redirect:/board/list";
 	}
 	
